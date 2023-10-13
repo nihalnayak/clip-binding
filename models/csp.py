@@ -232,4 +232,7 @@ def get_csp(train_dataset, config, device):
     else:
         interface, optimizer = object_model(train_dataset, config, device)
 
+    for param in interface.clip_model.parameters():
+        param.requires_grad = False
+
     return interface, optimizer
